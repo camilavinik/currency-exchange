@@ -4,13 +4,12 @@ enum class OrderBookType{bid, ask};
 
 class OrderBookEntry {
    public:
-      OrderBookEntry(double price,double amount, std::string timestamp, std::string product, OrderBookType orderType) {
-         this->price = price;
-         this->amount = amount;
-         this->timestamp = timestamp;
-         this->product = product;
-         this->orderType = orderType;
-      };
+      OrderBookEntry(double _price, double _amount, std::string _timestamp, std::string _product, OrderBookType _orderType)
+      : price(_price),
+      amount(_amount), 
+      timestamp(_timestamp), 
+      product(_product), 
+      orderType(_orderType) {};
 
       double price;
       double amount;
