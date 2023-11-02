@@ -1,5 +1,16 @@
 #include <iostream>
 
+enum class OrderBookType{bid, ask};
+
+class OrderBookEntry {
+   public:
+      double price;
+      double amount;
+      std::string timestamp;
+      std::string product;
+      OrderBookType orderType;
+};
+
 void printMenu() {
    // 1 print help
    std::cout << "1: Print help" << std::endl;
@@ -75,10 +86,20 @@ void processUserOption(int userOption) {
 }
 
 int main() {
-   printMenu();
-   int userOption = getUserOption();
+   // printMenu();
+   // int userOption = getUserOption();
 
-   processUserOption(userOption);
+   // processUserOption(userOption);
+
+   OrderBookEntry order1;
+
+   order1.price = 10000;
+   order1.amount = 0.002;
+   order1.timestamp = "2020/03/17 17:01:24.884492";
+   order1.product = "BTC/USDT";
+   order1.orderType = OrderBookType::bid;
+
+   std::cout << "The price is " << order1.price << std::endl;
 
    return 0;
 }
