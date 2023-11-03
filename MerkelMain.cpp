@@ -1,18 +1,40 @@
 #include <iostream>
 #include "MerkelMain.h"
+#include "OrderBookEntry.h"
 
-MerkelMain::MerkelMain() {
-
-}
+MerkelMain::MerkelMain() {}
 
 void MerkelMain::init() {
-    int input;
+   loadOrderBook();
+   int input;
 
-    while(true) {
-        printMenu();
-        input = getUserOption();
-        processUserOption(input);
-    }
+   while(true) {
+      printMenu();
+      input = getUserOption();
+      processUserOption(input);
+   }
+}
+
+void MerkelMain::loadOrderBook() {
+   orders.push_back(OrderBookEntry{
+      1000, 
+      0.002, 
+      "2020/03/17 17:01:24.884492", 
+      "BTC/USDT", 
+      OrderBookType::bid
+   });
+
+   orders.push_back(OrderBookEntry{
+      2000, 
+      0.002, 
+      "2020/03/17 17:01:24.884492", 
+      "BTC/USDT", 
+      OrderBookType::bid
+   });
+
+   for (OrderBookEntry& order: orders) {
+      std::cout << "The price is " << order.price << std::endl;
+   }
 }
 
 void MerkelMain::printMenu() {
@@ -42,7 +64,7 @@ void MerkelMain::printHelp() {
 }
 
 void MerkelMain::printMarketStats() {
-   std::cout << "Market looks good" << std::endl;
+   std::cout << "OrderBook contains: " << orders.size() << " entries" << std::endl;
 }
 
 void MerkelMain::enterOffer() {
