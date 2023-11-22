@@ -1,7 +1,8 @@
-#include <iostream>
 #include "MerkelMain.h"
 #include "OrderBookEntry.h"
 #include "CSVReader.h"
+#include <iostream>
+#include <vector>
 
 MerkelMain::MerkelMain() {}
 

@@ -1,6 +1,6 @@
 #include <iostream>
-#include "OrderBookEntry.cpp"
-#include "MerkelMain.cpp"
+#include "OrderBookEntry.h"
+#include "MerkelMain.h"
 #include "CSVReader.h"
 
 int main() {
