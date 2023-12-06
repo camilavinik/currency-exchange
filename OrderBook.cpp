@@ -33,6 +33,30 @@ std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type, std::string
     return orders_sub;
 };
 
+std::string OrderBook::getEarliestTime() {
+    std::string earliestTime = orders[0].timestamp;
+
+    return earliestTime;
+}
+
+std::string OrderBook::getNextTime(std::string timestamp) {
+    std::string next_timestamp = "";
+
+    for (OrderBookEntry& e : orders) {
+        if (e.timestamp > timestamp) {
+            next_timestamp = e.timestamp;
+            break;
+        }
+    }
+
+    if (next_timestamp == "") {
+        next_timestamp = orders[0].timestamp;
+    }
+
+    return next_timestamp;
+}
+
+
 double OrderBook::getHighPrice(std::vector<OrderBookEntry>& orders) {
     double max = orders[0].price;
     for (OrderBookEntry& e : orders) {
