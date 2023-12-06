@@ -12,4 +12,6 @@ class OrderBook {
         std::vector<std::string> getKnownProducts();
     /** return vector of Orders according to the sent filters */
         std::vector<OrderBookEntry> getOrders(OrderBookType type, std::string product, std::string timestamp); 
+    private:
+        std::vector<OrderBookEntry> orders;
 };
