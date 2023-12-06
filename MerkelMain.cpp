@@ -43,20 +43,23 @@ void MerkelMain::printHelp() {
 }
 
 void MerkelMain::printMarketStats() {
-   std::cout << "OrderBook contains: " << orders.size() << " entries" << std::endl;
-   unsigned int bids = 0;
-   unsigned int asks = 0;
-
-   for (OrderBookEntry& e : orders) {
-      if (e.orderType == OrderBookType::ask) {
-         asks ++;
-      } else if (e.orderType == OrderBookType::bid) {
-         bids ++;
-      }
+   for (std::string const p : orderBook.getKnownProducts()) {
+      std::cout << "Product: " << p << std::endl;
    }
+   // std::cout << "OrderBook contains: " << orders.size() << " entries" << std::endl;
+   // unsigned int bids = 0;
+   // unsigned int asks = 0;
 
-   std::cout << "OrderBook asks: " << asks << std::endl;
-   std::cout << "OrderBook bids: " << bids << std::endl;
+   // for (OrderBookEntry& e : orders) {
+   //    if (e.orderType == OrderBookType::ask) {
+   //       asks ++;
+   //    } else if (e.orderType == OrderBookType::bid) {
+   //       bids ++;
+   //    }
+   // }
+
+   // std::cout << "OrderBook asks: " << asks << std::endl;
+   // std::cout << "OrderBook bids: " << bids << std::endl;
 }
 
 void MerkelMain::enterOffer() {
