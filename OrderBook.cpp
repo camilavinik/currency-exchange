@@ -56,6 +56,10 @@ std::string OrderBook::getNextTime(std::string timestamp) {
     return next_timestamp;
 }
 
+void OrderBook::insertOrder(OrderBookEntry& order) {
+    orders.push_back(order);
+    std::sort(orders.begin(), orders.end(), OrderBookEntry::compareByTimestamp);
+}
 
 double OrderBook::getHighPrice(std::vector<OrderBookEntry>& orders) {
     double max = orders[0].price;
