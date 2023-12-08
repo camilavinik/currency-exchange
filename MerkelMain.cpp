@@ -70,8 +70,23 @@ void MerkelMain::printMarketStats() {
    // std::cout << "OrderBook bids: " << bids << std::endl;
 }
 
-void MerkelMain::enterOffer() {
-   std::cout << "Mark and offer - enter the amount" << std::endl;
+void MerkelMain::enterAsk() {
+   std::cout << "Mark and offer - enter the amount: product,price,amount eg ETH/BTC,200,0.5" << std::endl;
+   std::string input;
+   std::getline(std::cin, input);
+
+   std::vector<std::string> tokens = CSVReader::tokenise(input, ',');
+   if (tokens.size() != 3) {
+      std::cout << "MerkelMain::enterAsk Bad input! " << input << std::endl;
+   } else {
+      try {   
+         OrderBookEntry obe = CSVReader::stringsToOBE(tokens[1], tokens[2], currentTime, tokens[0], OrderBookType::ask);
+      } catch(const std::exception& e) {
+         std::cout << "MerkelMain::enterAsk Bad input! " << input << std::endl;
+      }
+   }
+
+   std::cout << "You typed: " << input << std::endl;
 }
 
 void MerkelMain::enterBid() {
@@ -90,10 +105,17 @@ void MerkelMain::goToNextTimeframe() {
 int MerkelMain::getUserOption() {
    std::cout << "Type in 1-6" << std::endl;
    
-   int userOption;
-   std::cin >> userOption;
-   std::cout << "You chose: " << userOption << std::endl;
+   int userOption = 0;
+   std::string line;
+   std::getline(std::cin, line);
 
+   try {
+      userOption = std::stoi(line);
+   } catch(const std::exception& e) {
+      //
+   }
+
+   std::cout << "You chose: " << userOption << std::endl;
    return userOption;
 }
 
@@ -105,7 +127,7 @@ void MerkelMain::processUserOption(int userOption) {
    } else if (userOption == 2) {
       printMarketStats();
    } else if (userOption == 3) {
-      enterOffer();
+      enterAsk();
    } else if (userOption == 4) {
       enterBid();
    } else if (userOption == 5) {
