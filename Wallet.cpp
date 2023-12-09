@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Wallet.h"
 #include "CSVReader.h"
 
@@ -44,6 +45,7 @@ bool Wallet::canFulfillOrder(OrderBookEntry order) {
     if (order.orderType == OrderBookType::ask) {
         double amount = order.amount;
         std::string currency = currs[0];
+        std::cout << "Wallet::canFulfillOrder " << currency << ": " << amount << std::endl;
         return containsCurrency(currency, amount);
     }
 
