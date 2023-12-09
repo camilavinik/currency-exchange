@@ -13,4 +13,4 @@ class Wallet {
 
     private:
         std::map<std::string, double> currencies;
-}
+};
