@@ -28,5 +28,12 @@ bool Wallet::containsCurrency(std::string type, double amount) {
 }
 
 std::string Wallet::toString() {
-    return "-";
+    std::string s;
+    for (std::pair<std::string, double> pair : currencies) {
+        std::string currency = pair.first;
+        double amount = pair.second;
+        s += currency + ": " + std::to_string(amount) + "\n";
+    }
+
+    return s;
 }
