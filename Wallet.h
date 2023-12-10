@@ -11,6 +11,10 @@ class Wallet {
         bool removeCurrency(std::string type, double amount);
         /** checks if the waller can cope with this ask or bid */
         bool canFulfillOrder(OrderBookEntry order);
+        /** update the contents of the wallet 
+         * assumes the order was made by the owner of the wallet
+        */
+        void processSale(OrderBookEntry& sale);
         /** check if the wallet contains this much currency or more */
         bool containsCurrency(std::string type, double amount);
         /** generate string representation */
